@@ -102,4 +102,3 @@ for d in os.listdir(s):
                                 f1.write(t.text + '\n') 
                     idic.append(dic)
         dic_list.append(dic)
-print(dic_list[0:4])
