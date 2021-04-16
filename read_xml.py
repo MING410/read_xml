@@ -1,8 +1,8 @@
 
 import xml.etree.ElementTree as ET
 import os
-base='/home/ubuntu/local/mitsubishi_dataset/png_images'
-s = '/home/ubuntu/local/mitsubishi_dataset/annotation'
+base='./mitsubishi_dataset/png_images'
+s = './mitsubishi_dataset/annotation'
 dic_list=[]
 qdic=[]
 idic=[]
@@ -48,15 +48,13 @@ for d in os.listdir(s):
                             dic['image']=final_path
                             dic['bbx']=l
                             dic['id']=j
-                            #print(rect['xmin'] + ' ' + rect['ymin'] + ' ' + rect['xmax'] + ' ' + rect['ymax'])
-
+                      
                             line = rect['xmin'] + ' ' + rect['ymin'] + ' ' + rect['xmax'] + ' ' + rect['ymax'] + " "
                             f1.write(line)
                             
                             for t in ob.iter('name'):
                                 dic['label']=t.text
-                                #print(t.text)
-                            
+                              
                                 f1.write(t.text + '\n')
                     qdic.append(dic)
         else:
@@ -91,23 +89,17 @@ for d in os.listdir(s):
                             f_name=rect['path'].split('/')[5]
                             i_name=rect['path'].split('/')[6]
                             final_path=os.path.join(base,f_name,i_name)
-                            #print(final_path)
                             dic['image']=final_path
-                            #print(dic['image'])
                             dic['bbx']=l
                             dic['id']=j
-                            #print(rect['xmin'] + ' ' + rect['ymin'] + ' ' + rect['xmax'] + ' ' + rect['ymax'])
 
                             line = rect['xmin'] + ' ' + rect['ymin'] + ' ' + rect['xmax'] + ' ' + rect['ymax'] + " "
                             f1.write(line)
                             
                             for t in ob.iter('name'):
                                 dic['label']=t.text
-                                #print(t.text)
-                            
+
                                 f1.write(t.text + '\n') 
-                            #print(dic)
                     idic.append(dic)
         dic_list.append(dic)
-        #print(dic_list)
 print(dic_list[0:4])
